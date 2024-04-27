@@ -4,12 +4,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,12 +30,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "blogs")
-public class Blog {
+@DynamicInsert
+@DynamicUpdate
+@Table(name = "posts")
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "BlogId", nullable = false)
+    @Column(name = "PostId", nullable = false)
     private long id;
     private String title;
     private String content;
@@ -39,7 +45,7 @@ public class Blog {
 
     @ManyToOne
     private Bloger author;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "post")
     private List<Comment> comments;
 
     @Enumerated(EnumType.STRING)
@@ -52,6 +58,6 @@ public class Blog {
     @CreationTimestamp
     private LocalDateTime createdOn;
     @UpdateTimestamp
-    private LocalDateTime updateOn;
+    private LocalDateTime updatedOn;
 
 }

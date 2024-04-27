@@ -11,7 +11,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,12 +33,12 @@ public class Comment {
 
     @ManyToOne
     private Bloger author;
-    @OneToOne
-    private Blog blog;
+    @ManyToOne
+    private Post post;
 
     @CreationTimestamp
     private LocalDateTime createdOn;
     @UpdateTimestamp
-    private LocalDateTime updateOn;
+    private LocalDateTime updatedOn;
 
 }
