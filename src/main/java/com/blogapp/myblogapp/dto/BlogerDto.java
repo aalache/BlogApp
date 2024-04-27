@@ -19,6 +19,6 @@ public class BlogerDto {
     private List<Post> blogs;
     private List<Comment> comments;
     private LocalDateTime createdOn;
-    private LocalDateTime updateOn;
+    private LocalDateTime updatedOn;
 
 }

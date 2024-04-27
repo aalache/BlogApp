@@ -17,5 +17,5 @@ public class CommentDto {
     private Bloger author;
     private Post blog;
     private LocalDateTime createdOn;
-    private LocalDateTime updateOn;
+    private LocalDateTime updatedOn;
 }

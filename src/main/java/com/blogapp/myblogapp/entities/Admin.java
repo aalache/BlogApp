@@ -1,6 +1,5 @@
 package com.blogapp.myblogapp.entities;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;

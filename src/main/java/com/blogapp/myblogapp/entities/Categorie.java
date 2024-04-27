@@ -1,6 +1,6 @@
 package com.blogapp.myblogapp.entities;
 
-public enum Categories {
+public enum Categorie {
     HEALTH,
     POLITIC,
     SPORT,

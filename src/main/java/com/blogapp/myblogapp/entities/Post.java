@@ -3,6 +3,7 @@ package com.blogapp.myblogapp.entities;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.attoparser.dom.Text;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -40,6 +41,8 @@ public class Post {
     @Column(name = "PostId", nullable = false)
     private long id;
     private String title;
+
+    @Column(columnDefinition = "Text")
     private String content;
     private int likes;
 
@@ -50,7 +53,7 @@ public class Post {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "categories", nullable = false)
-    private Categories categories;
+    private Categorie categorie;
     @Enumerated(EnumType.STRING)
     @Column(name = "visibility", nullable = false)
     private Visibility visibility;

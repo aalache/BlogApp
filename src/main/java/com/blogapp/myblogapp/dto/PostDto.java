@@ -8,17 +8,16 @@ import lombok.*;
 
 @Data
 @Builder
-public class BlogDto {
-
+public class PostDto {
     private long id;
     private String title;
     private String content;
     private int likes;
     private Bloger author;
     private List<Comment> comments;
-    private Categories categories;
+    private Categorie categorie;
     private Visibility visibility;
     private LocalDateTime createdOn;
-    private LocalDateTime updateOn;
+    private LocalDateTime updatedOn;
 
 }
