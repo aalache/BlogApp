@@ -14,10 +14,16 @@ public class BlogerDto {
 
     private long id;
     private String userName;
-    private String password;
+    // ?
+    // private String password;
+    // ?
     private String email;
-    private List<Post> blogs;
+    private Role role;
+    private List<Post> Posts;
     private List<Comment> comments;
+    private List<Bloger> friends;
+    private List<Post> favoriteBlogs;
+    private List<Post> likedBlogs;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
 

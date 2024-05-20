@@ -19,17 +19,21 @@ public class PostServiceImpl implements IpostService {
     @Autowired
     private PostRepository postRepository;
 
-    private PostDto mapToPostDto(Post blog) {
+    private PostDto mapToPostDto(Post post) {
+
         PostDto postDto = PostDto.builder()
-                .id(blog.getId())
-                .title(blog.getTitle())
-                .author(blog.getAuthor())
-                .categorie(blog.getCategorie())
-                .comments(blog.getComments())
-                .createdOn(blog.getCreatedOn())
-                .updatedOn(blog.getUpdatedOn())
+                .id(post.getId())
+                .title(post.getTitle())
+                .content(post.getContent())
+                .likes(post.getLikes())
+                .author(post.getAuthor())
+                .categorie(post.getCategorie())
+                .comments(post.getComments())
+                .createdOn(post.getCreatedOn())
+                .updatedOn(post.getUpdatedOn())
                 .build();
         return postDto;
+
     }
 
     // ? All search filters By [id,author,categorie,title,visibility,creationTime]
@@ -94,18 +98,10 @@ public class PostServiceImpl implements IpostService {
     @Override
     public PostDto createPost(Post post) {
 
-        // Post newPost = Post.builder()
-        // .id(post.getId())
-        // .author(post.getAuthor())
-        // .categorie(post.getCategorie())
-        // .comments(post.getComments())
-        // .content(post.getContent())
-        // .createdOn(post.getCreatedOn())
-        // .updatedOn(post.getUpdatedOn())
-        // .likes(post.getLikes())
-        // .build();
-
-        return savePost(post);
+        if (post != null)
+            return savePost(post);
+        else
+            return null;
 
     }
 
@@ -121,14 +117,15 @@ public class PostServiceImpl implements IpostService {
 
     @Override
     public PostDto savePost(Post post) {
-        if (post != null) {
-            return mapToPostDto(postRepository.save(post));
-        }
-        return null;
+
+        Post savedPost = postRepository.save(post);
+        return mapToPostDto(savedPost);
+
     }
 
     @Override
     public Boolean updatePost(Post post) {
+
         Post postToUpdate = postRepository.findById(post.getId());
 
         if (postToUpdate != null) {
@@ -136,7 +133,6 @@ public class PostServiceImpl implements IpostService {
             return true;
 
         } else {
-            createPost(post);
             return false;
         }
     }

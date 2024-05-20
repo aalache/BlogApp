@@ -51,6 +51,15 @@ public class Bloger extends User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
     private List<Comment> comments;
 
+    @OneToMany
+    private List<Bloger> friends;
+
+    @OneToMany
+    private List<Post> favoriteBlogs;
+
+    @OneToMany
+    private List<Post> likedBlogs;
+
     @CreationTimestamp
     private LocalDateTime createdOn;
     @UpdateTimestamp

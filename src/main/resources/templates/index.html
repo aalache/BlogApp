@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="output.css">
 </head>
 <body>
-    <p>this is  posts page</p>
-
-    <div th:each=" post: ${posts}">
-        <p th:text="${post.title}"></p>
-        <p th:text="${post.categorie}"></p>
-        <p th:text="${post.content}"></p>
-        <p th:text="${post.visibility}"></p>
-    </div>
+    <nav class="w-full flex  items-center justify-between bg-[#efefef] text-black h-[70px] px-10 border-b-2 border ">
+       
+        <a href="#" class="text-xl font-medium">Blog<span>.App</span></a>
+    
+        <ul class="flex items-center justify-between space-x-12">
+            <li>Home</li>
+            <li>Blogs</li>
+            <li>MyBlogs</li>
+        </ul>
+        <div></div>
+    </nav>
 </body>
 </html>

@@ -1,7 +1,19 @@
 package com.blogapp.myblogapp.entities;
 
 public enum Categorie {
-    HEALTH,
-    POLITIC,
     SPORT,
+    PERSONAL,
+    LIFESTYLE,
+    TECHNOLOGY,
+    HEALTH_AND_FITNESS,
+    FOOD_AND_COOKING,
+    TRAVEL,
+    FINANCE,
+    BUSINESS_AND_ENTREPRENEURSHIP,
+    PARENTING_AND_FAMILY,
+    EDUCATION,
+    ENTERTAINMENT,
+    HOBBIES_AND_CRAFTS,
+    FASHION_AND_BEAUTY,
+    HOME_AND
 }
