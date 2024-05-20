@@ -60,6 +60,9 @@ public class Bloger extends User {
     @OneToMany
     private List<Post> likedBlogs;
 
+    @OneToMany
+    private List<Bloger> friendRequest;
+
     @CreationTimestamp
     private LocalDateTime createdOn;
     @UpdateTimestamp
