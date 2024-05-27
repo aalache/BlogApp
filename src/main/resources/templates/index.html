@@ -1,22 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="output.css">
-</head>
-<body>
-    <nav class="w-full flex  items-center justify-between bg-[#efefef] text-black h-[70px] px-10 border-b-2 border ">
-       
-        <a href="#" class="text-xl font-medium">Blog<span>.App</span></a>
-    
-        <ul class="flex items-center justify-between space-x-12">
-            <li>Home</li>
-            <li>Blogs</li>
-            <li>MyBlogs</li>
-        </ul>
-        <div></div>
+    <link rel="stylesheet" href="output.css" />
+  </head>
+  <body>
+    <nav
+      class="w-full flex items-center justify-between bg-[#efefef] text-black h-[70px] px-10 border-b-2 border"
+    >
+      <a href="#" class="text-xl font-medium">Blog<span>.App</span></a>
+
+      <ul class="flex items-center justify-between space-x-12">
+        <li>Home</li>
+        <li>Blogs</li>
+        <li>MyBlogs</li>
+      </ul>
     </nav>
-</body>
+
+    <!-- <ul th:each="bloger : ${blogers}" class="border border-gray-300 p-4">
+      <li th:text="${bloger}"></li>
+    </ul> -->
+
+    <!-- <p th:text="${id}" > </p> -->
+
+     <ul th:each="post : ${posts}" class="border border-gray-300 p-4">
+      <li th:text="${post}"></li>
+    </ul>
+
+  </body>
 </html>
