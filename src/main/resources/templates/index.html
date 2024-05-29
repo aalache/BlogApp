@@ -1,33 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="output.css" />
-  </head>
-  <body>
-    <nav
-      class="w-full flex items-center justify-between bg-[#efefef] text-black h-[70px] px-10 border-b-2 border"
-    >
-      <a href="#" class="text-xl font-medium">Blog<span>.App</span></a>
+<html lang="en" class="h-full bg-[#111827]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="./../output.css">
+    <link rel="stylesheet" href="./../style.css">
+</head>
+<body class="h-full">
 
-      <ul class="flex items-center justify-between space-x-12">
-        <li>Home</li>
-        <li>Blogs</li>
-        <li>MyBlogs</li>
-      </ul>
-    </nav>
+    <div class="relative min-h-full  flex justify-center items-center bg-hero">
+        <div class="absolute inset-0 w-full h-full   ">
 
-    <!-- <ul th:each="bloger : ${blogers}" class="border border-gray-300 p-4">
-      <li th:text="${bloger}"></li>
-    </ul> -->
+            <!-- ? Here the NavBar componnent starts -->
+                <nav class=" text-white  flex items-center justify-between px-10 py-3.5 backdrop-blur-sm bg-indigo-950">
+                    <div class=" fixed   -top-0 left-20 w-10 h-10 bg-indigo-500/50 rounded-full filter blur-3xl"></div>
+                    <div class=" fixed   -top-0 right-0 w-10 h-10 bg-indigo-500/50 rounded-full filter blur-3xl"></div>
+                    <div class=" fixed bottom-0 -right-2  w-10 h-10 bg-indigo-600/50 rounded-full filter blur-3xl"></div>
+                    <p class="text-3xl">
+                        <a href="#">LOGO</a>
+                    </p>
+                    
+                    <ul class="flex justify-center items-center space-x-3 bg-[#111827]  rounded-full shadow-md ">
+                        <li class="bg-[#111827] hover:text-indigo-500 py-2 px-4 rounded-full"><a href="#">Sign In</a></li>
+                        <li class="bg-indigo-900 hover:bg-indigo-600 animate-bounce py-2 px-4 rounded-full"><a href="#">Sign Up</a></li>
+                    </ul>
+                </nav>
+            <!-- ? NavBar End -->
+            
+                <div class="h-auto lg:h-[100vh] flex  items-center justify-center px-10 backdrop-blur-sm  text-white  ">
+                    
+                    <div class="z-10 bg-[#111827] backdrop-blur-lg w-full h-auto lg:h-[70%] px-7 py-5 lg:flex items-center justify-between rounded-xl border-2 border-dashed border-indigo-900 ">
+                        <div class=" fixed   -top-0 left-20 w-96 h-72 bg-indigo-500/50 rounded-full filter blur-3xl"></div>
+                        <div class=" fixed   -top-0 right-0 w-96 h-72 bg-indigo-500/50 rounded-full filter blur-3xl"></div>
+                        <div class=" fixed bottom-0 -right-2  w-72 h-72 bg-indigo-600/50 rounded-full filter blur-3xl"></div>
+                        <div class=" w-[100%] lg:w-[50%] pr-8">
+                            <h1 class=" text-5xl lg:text-7xl font-semibold">New Arrival</h1>
+                            <p class="text-md font-sans pt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure exercitationem vitae mollitia incidunt culpa suscipit officiis tempore quis.</p>
+                            <div class="flex  items-center space-x-5 pt-6">
+                                <h2 class=' text-3xl/tight'>Get Up to <br/> 10% Off</h2>
+                                <a href="#" class="bg-green-600 rounded-full px-4 py-2 text-white shadow-xl border-2 animate-bounce">Buy Now</a>
+                            </div>
+                        </div>
+                        <div class="relative  w-[100%] h-[250px] lg:w-[50%] mt-10 lg:mt-0 lg:h-full rounded-xl shadow-2xl">
+                            <img src="../assets/image2.jpeg" alt="" class="relative w-full h-full rounded-xl">
+                        </div>
+                    </div>
+                </div>
 
-    <!-- <p th:text="${id}" > </p> -->
-
-     <ul th:each="post : ${posts}" class="border border-gray-300 p-4">
-      <li th:text="${post}"></li>
-    </ul>
-
-  </body>
+                <!-- <div class="relative w-full h-[500px] z-0 bg-[#111827] text-white border-2 border-dashed border-indigo-900 px-8 overflow-scroll">
+                    <div class=" fixed   -top-0 left-30 w-96 h-72 bg-indigo-500/50 rounded-full filter blur-3xl"></div>
+                    <div class=" fixed   -top-0 right-0 w-96 h-72 bg-indigo-500/50 rounded-full filter blur-3xl"></div>
+                    <div class=" fixed bottom-0 -right-2  w-72 h-72 bg-indigo-600/50 rounded-full filter blur-3xl"></div>
+                </div> -->
+        </div>
+    </div>
+      
+      
+</body>
 </html>

@@ -11,6 +11,7 @@ import lombok.*;
 public class PostDto {
     private long id;
     private String title;
+    private String description;
     private String content;
     private int likes;
     private Bloger author;

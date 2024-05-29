@@ -8,11 +8,12 @@ import com.blogapp.myblogapp.entities.Post;
 import com.blogapp.myblogapp.entities.Visibility;
 
 import java.util.List;
+import java.util.Optional;
 import java.time.LocalDateTime;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    Post findById(long id);
+    Optional<Post> findById(Long id);
 
     List<Post> findByAuthor(Bloger author);
 

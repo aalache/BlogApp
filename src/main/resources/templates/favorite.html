@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#111827]">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./../output.css">
+    <link rel="stylesheet" href="./../style.css">
+</head>
+
+<body class=" h-full">
+    <div class="relative min-h-full  w-full bg-hero overflow-hidden ">
+
+        <div class="absolute inset-0 min-h-full grid grid-cols-6 backdrop-blur-lg bg-indigo-950/40">
+            <!-- ? Here the NavBar componnent starts -->
+            <nav class="col-span-1 z-10 text-white flex flex-col justify-between p-3 ">
+                <div class="space-y-6">
+                    <p class="text-3xl px-4 py-2">
+                        <a href="#">LOGO</a>
+                    </p>
+
+                    <ul class="space-y-2">
+                        <li
+                            class=" px-4 py-3 rounded-md hover:shadow-md bg-indigo-900 transition-all ease-in hover:scale-105  cursor-pointer hover:tracking-wider">
+                            <a href="./home.html" class="space-x-3"><i class="fa-regular fa-map"></i><span>Home</span></a>
+                        </li>
+                        <li
+                            class=" px-4 py-3 rounded-md hover:shadow-md hover:bg-indigo-900 transition-all ease-in hover:scale-105 cursor-pointer hover:tracking-wider">
+                            <a href="./blogs.html" class="space-x-3"><i class="fa-regular fa-newspaper"></i><span>Blogs</span></a>
+                        </li>
+                        <li
+                            class=" px-4 py-3 rounded-md hover:shadow-md hover:bg-indigo-900 transition-all ease-in hover:scale-105 cursor-pointer hover:tracking-wider">
+                            <a href="#" class="space-x-3"><i class="fa-regular fa-rectangle-list"></i><span>MyBlogs</span></a>
+                        </li>
+                        <li
+                            class=" px-4 py-3 rounded-md hover:shadow-md hover:bg-indigo-900 transition-all ease-in hover:scale-105 cursor-pointer hover:tracking-wider">
+                            <a href="#" class="space-x-3"><i class="fa-regular fa-heart"></i><span>Favorite</span></a>
+                        </li>
+                        <li
+                            class=" px-4 py-3 rounded-md hover:shadow-md hover:bg-indigo-900 transition-all ease-in hover:scale-105 cursor-pointer hover:tracking-wider">
+                            <a href="#" class="space-x-3"><i class="fa-solid fa-sliders"></i><span>Settings</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flex justify-between items-center backdrop-blur-sm bg-[#111827]/80  rounded-full shadow-md mb-3   ">
+                    <img class=" h-full  rounded-full  size-12 border border-indigo-900 shadow-lg"
+                        src="./../assets/image1.png" />
+                    <a href="#"
+                        class="h-full  hover:text-indigo-500 py-2 px-4 rounded-full flex items-center justify-start w-">@Oaalche4763</a>
+                </div>
+            </nav>
+            <!-- ? NavBar End -->
+
+            <!-- ? Here the Blogs section starts -->
+            <div class="relative col-span-5 z-0 bg-[#111827] text-white border-l-2 border-dashed border-indigo-900 px-8 overflow-scroll">
+                 <div class=" fixed   -top-20 left-30 w-96 h-72 bg-indigo-500/50 rounded-full filter blur-3xl"></div>
+                 <div class=" fixed   -top-20 right-0 w-96 h-72 bg-indigo-500/50 rounded-full filter blur-3xl"></div>
+                 <div class=" fixed bottom-0 -right-2  w-72 h-72 bg-indigo-600/50 rounded-full filter blur-3xl"></div>
+                <!-- ! for blogs and other section -->
+                <div class=" w-full   py-5 space-y-3">
+                    <h2 class="text-2xl font-medium">Favorite</h2>
+                    <p class="leading-5 ">@oaalache<span class="font-mono font-bold text-indigo-500"> > </span>Favorite</p>
+                </div>
+                <!-- ! =================== -->
+
+                <!-- ?Search Bar -->
+                <div class="w-full  p-7 flex items-center justify-center">
+                    <form  class="bg-transparent w-[40%] transition-all ease-in duration-300 flex items-center justify-between hover:w-[65%]  rounded-full  text-indigo-200 hover:shadow-lg border-2 border-dashed border-indigo-500">
+                        <input 
+                        type="text" 
+                        placeholder="Search..."
+                        class="w-full py-3 rounded-full px-5 focus-visible:outline focus-visible:outline-0 bg-[#111827]/70  backdrop-blur-sm "
+                        />
+                    </form>
+                </div>
+                <!-- ? ----- -->
+
+                <!-- ? Blogs list section -->
+                <h3 class="pt-3 text-xl">Your Favorite Blogs</h3>
+                <div class="grid grid-cols-4 grid-flow-row gap-5  w-full  my-4 rounded-3xl">
+
+                    <div class="h-[250px] w-[250px] bg-indigo-900 rounded-lg relative hover:scale-105 transition-all border-2  border-indigo-900">
+                        <img src="./../assets/image3.jpeg" class="w-full h-full rounded-lg" alt="">
+                        <div class="opacity-0 hover:opacity-100 hover:bg-indigo-700/30 hover:backdrop-blur-sm absolute inset-0 rounded-lg transition-all ease-in ">
+                            <div class="p-3 flex items-center justify-between">
+                                <h3 class=" text-sm text-indigo-300">Description</h3>
+                                <div class="flex items-center justify-center space-x-3">
+                                    <i class="fa-regular fa-heart hover:text-red-600"></i>
+                                    <i class="fa-regular fa-trash-can hover:text-red-400"></i>
+                                    <i class="fa-regular fa-pen-to-square hover:text-indigo-300"></i>
+                                </div>
+                            </div>
+                            <p class="px-3 text-xs">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet laborum, aliquam cumque id expedita atque architecto debitis repellat natus, quo harum delectus eius veritatis totam quia magnam aperiam dolores cum!</p>
+                            <p class="p-3 text-sm text-indigo-300">@Oaalche4763</p>
+                        </div>
+                    </div>
+                    
+                    
+                   
+                </div>
+                <!-- ?  -->
+                
+            </div>
+
+            <!-- ? End -->
+        </div>
+    </div>
+</body>
+
+</html>

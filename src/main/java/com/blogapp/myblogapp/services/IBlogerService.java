@@ -9,19 +9,20 @@ public interface IBlogerService {
 
     List<BlogerDto> findAllBlogers();
 
+    // ? search filters
     BlogerDto findById(Long id);
 
     BlogerDto findByUserName(String userName);
 
     BlogerDto findByEmail(String email);
 
-    void friendRequest(Long userId);
+    // ? Crud operations
 
-    BlogerDto AddBloger(User user);
+    void friendRequest(Long userId);
 
     BlogerDto saveBloger(User user);
 
     Boolean updateBloger(User user);
 
-    Boolean deleteBloger(Long userId);
+    Boolean deleteBloger(Long id);
 }

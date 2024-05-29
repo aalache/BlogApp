@@ -1,7 +1,7 @@
 package com.blogapp.myblogapp.services;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +31,11 @@ public class PostServiceImpl implements IpostService {
     @Override
     public List<PostDto> findAllPosts() {
         List<Post> posts = postRepository.findAll();
+        // System.out.println("3######3###################################################");
+        // for (Post post : posts) {
+        // System.out.println(post.toString());
+        // }
+        // System.out.println("3######3###################################################");
         return posts.stream().map((post) -> dtoMapping.mapToPostDto(post)).collect(Collectors.toList());
     }
 
@@ -88,10 +93,26 @@ public class PostServiceImpl implements IpostService {
     @Override
     public PostDto createPost(Post post) {
 
-        if (post != null)
+        if (post != null) {
+
             return savePost(post);
-        else
+
+        } else {
             return null;
+        }
+
+    }
+
+    @Override
+    public PostDto savePost(Post post) {
+
+        if (post != null) {
+            Post savedPost = postRepository.save(post);
+            return dtoMapping.mapToPostDto(savedPost);
+        } else {
+            System.out.println("Post allready exist !!");
+            return null;
+        }
 
     }
 
@@ -106,17 +127,9 @@ public class PostServiceImpl implements IpostService {
     }
 
     @Override
-    public PostDto savePost(Post post) {
-
-        Post savedPost = postRepository.save(post);
-        return dtoMapping.mapToPostDto(savedPost);
-
-    }
-
-    @Override
     public Boolean updatePost(Post post) {
 
-        Post postToUpdate = postRepository.findById(post.getId());
+        Post postToUpdate = postRepository.findById(post.getId()).orElse(null);
 
         if (postToUpdate != null) {
             savePost(post);

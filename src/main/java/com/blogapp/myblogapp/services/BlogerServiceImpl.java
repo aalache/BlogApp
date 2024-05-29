@@ -28,23 +28,15 @@ public class BlogerServiceImpl implements IBlogerService {
         throw new UnsupportedOperationException("Unimplemented method 'friendRequest'");
     }
 
-    @Override
-    public BlogerDto AddBloger(User user) {
-        if (user != null)
-            return saveBloger(user);
-        else
-            return null;
-    }
+    // ? User Crud operations
 
     @Override
     public BlogerDto saveBloger(User user) {
-        Bloger userIfExist = (Bloger) userRepository.findByUserName(user.getUserName()).orElse(null);
 
-        if (userIfExist == null) {
+        if (user != null) {
             Bloger newUser = (Bloger) userRepository.save(user);
             return dtoMapping.mapToBlogerDto(newUser);
         } else {
-            System.out.println("User already exist !!");
             return null;
         }
     }
@@ -52,10 +44,8 @@ public class BlogerServiceImpl implements IBlogerService {
     @Override
     public Boolean updateBloger(User user) {
 
-        Bloger userToUpdate = (Bloger) userRepository.findById(user.getId()).orElse(null);
-
-        if (userToUpdate != null) {
-            saveBloger(userToUpdate);
+        if (user != null) {
+            userRepository.save(user);
             return true;
 
         } else {
@@ -64,9 +54,9 @@ public class BlogerServiceImpl implements IBlogerService {
     }
 
     @Override
-    public Boolean deleteBloger(Long userId) {
+    public Boolean deleteBloger(Long id) {
 
-        Bloger userToDelete = (Bloger) userRepository.findById(userId).orElse(null);
+        Bloger userToDelete = (Bloger) userRepository.findById(id).orElse(null);
 
         if (userToDelete != null) {
             userRepository.delete(userToDelete);
@@ -74,6 +64,8 @@ public class BlogerServiceImpl implements IBlogerService {
         } else
             return false;
     }
+
+    // ? filters
 
     @Override
     public List<BlogerDto> findAllBlogers() {

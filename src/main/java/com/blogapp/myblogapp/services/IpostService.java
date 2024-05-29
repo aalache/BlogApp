@@ -11,6 +11,8 @@ import com.blogapp.myblogapp.entities.Visibility;
 
 public interface IpostService {
 
+    // ? post filters
+
     List<PostDto> findAllPosts();
 
     PostDto findById(Long postId);
@@ -24,6 +26,8 @@ public interface IpostService {
     List<PostDto> findByVisibility(Visibility visibility);
 
     List<PostDto> findByCreatedOn(LocalDateTime createdOn);
+
+    // ? post Crud operations
 
     Boolean likePost(Long postId);
 

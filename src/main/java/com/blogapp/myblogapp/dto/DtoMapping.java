@@ -3,7 +3,6 @@ package com.blogapp.myblogapp.dto;
 import com.blogapp.myblogapp.entities.Bloger;
 import com.blogapp.myblogapp.entities.Comment;
 import com.blogapp.myblogapp.entities.Post;
-import com.blogapp.myblogapp.entities.User;
 
 public class DtoMapping {
 
@@ -14,6 +13,7 @@ public class DtoMapping {
         PostDto postDto = PostDto.builder()
                 .id(post.getId())
                 .title(post.getTitle())
+                .description(post.getDescription())
                 .content(post.getContent())
                 .likes(post.getLikes())
                 .author(post.getAuthor())
@@ -32,6 +32,7 @@ public class DtoMapping {
 
         Post postRes = Post.builder()
                 .id(post.getId())
+                .description(post.getDescription())
                 .title(post.getTitle())
                 .content(post.getContent())
                 .likes(post.getLikes())

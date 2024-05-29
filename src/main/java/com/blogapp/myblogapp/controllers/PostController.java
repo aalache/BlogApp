@@ -24,43 +24,101 @@ public class PostController {
     @Autowired
     private IBlogerService blogerService;
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/posts")
     public String index(Model model) {
 
-        Bloger bloger = Bloger.builder().build();
-        bloger.setUserName("@zakariae");
-        bloger.setEmail("zakariae@gmail.com");
-        bloger.setPassword("passwd321");
+        // Bloger bloger = Bloger.builder().build();
+        // bloger.setUserName("@zakariae");
+        // bloger.setEmail("zakariae@gmail.com");
+        // bloger.setPassword("passwd321");
 
-        blogerService.AddBloger(bloger);
+        // blogerService.saveBloger(bloger);
 
-        Post post1 = Post.builder()
-                .categorie(Categorie.LIFESTYLE)
-                .content("this is the my first Post ,it's about Life Style ...")
-                .likes(255)
-                .title("How to ?")
-                .visibility(Visibility.PUBLIC)
-                .build();
+        // Post post1 = Post.builder()
+        // .categorie(Categorie.LIFESTYLE)
+        // .content("this is the my first Post ,it's about Life Style ...")
+        // .likes(255)
+        // .title("How to ?")
+        // .visibility(Visibility.PUBLIC)
+        // .id(1)
+        // .build();
 
-        postService.createPost(post1);
+        // Post post1 = Post.builder()
+        // .categorie(Categorie.LIFESTYLE)
+        // .content("this is the forth post for today...")
+        // .likes(255)
+        // .title("Post 4")
+        // .visibility(Visibility.PRIVATE)
+        // .id(1)
+        // .build();
 
-        post1.setAuthor(bloger);
-        postService.savePost(post1);
+        // post1.setAuthor(bloger);
+
+        // postService.createPost(post1);
 
         List<PostDto> posts = postService.findAllPosts();
         model.addAttribute("posts", posts);
-        List<BlogerDto> blogers = blogerService.findAllBlogers();
 
-        BlogerDto id = blogerService.findById(1L);
-        model.addAttribute("id", id);
-
-        model.addAttribute("blogers", blogers);
-        return "index";
+        return "blogs";
     }
 
     @GetMapping("/home")
     public String home() {
         return "home";
     }
+    
+      // Endpoint to like a post
+    @PostMapping("/{postId}/like")
+    public ResponseEntity<Boolean> likePost(@PathVariable Long postId) {
+        Boolean result = postService.likePost(postId);
+        if (result) {
+            return ResponseEntity.ok(true);
+        } else {
+            return ResponseEntity.badRequest().body(false);
+        }
+    }
+
+    // Endpoint to create a new post
+    @PostMapping
+    public ResponseEntity<PostDto> createPost(@Valid @RequestBody Post post, BindingResult result) {
+        if (result.hasErrors()) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        PostDto postDto = postService.createPost(post);
+        return ResponseEntity.ok(postDto);
+    }
+
+    // Endpoint to save a post
+    @PutMapping
+    public ResponseEntity<PostDto> savePost(@Valid @RequestBody Post post, BindingResult result) {
+        if (result.hasErrors()) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        PostDto postDto = postService.savePost(post);
+        return ResponseEntity.ok(postDto);
+    }
+
+    // Endpoint to update a post
+    @PutMapping("/{postId}")
+    public ResponseEntity<Boolean> updatePost(@PathVariable Long postId, @Valid @RequestBody Post post, BindingResult result) {
+        if (result.hasErrors()) {
+            return ResponseEntity.badRequest().body(false);
+        }
+        post.setId(postId); // Ensure the ID is set for updating
+        Boolean updated = postService.updatePost(post);
+        return ResponseEntity.ok(updated);
+    }
+
+    // Endpoint to delete a post
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<Boolean> deletePost(@PathVariable Long postId) {
+        Boolean deleted = postService.deletePost(postId);
+        if (deleted) {
+            return ResponseEntity.ok(true);
+        } else {
+            return ResponseEntity.badRequest().body(false);
+        }
+    }
+}
 
 }

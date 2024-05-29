@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.*;
 
@@ -29,6 +30,7 @@ import java.util.*;
 @DynamicUpdate
 @Table(name = "blogers")
 @DiscriminatorValue("BLG")
+@ToString(exclude = "Posts")
 public class Bloger extends User {
 
     public Bloger() {
@@ -45,7 +47,7 @@ public class Bloger extends User {
         this.setRole(Role.ROLE_BLOGER);
     }
 
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "author")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
     private List<Post> Posts;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
