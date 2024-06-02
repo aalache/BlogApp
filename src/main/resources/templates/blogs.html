@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en" class="h-full bg-[#111827]">
+<html   xmlns:th="http://www.thymeleaf.org" 
+        lang="en" class="h-full bg-[#111827]">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./../output.css">
-    <link rel="stylesheet" href="./../style.css">
+    <link th:href="@{/css/output.css} "rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <title>Posts</title>
 </head>
 
 <body class=" h-full">
-    <div class="relative min-h-full  w-full bg-hero overflow-hidden ">
+    <div  class="relative min-h-full  w-full bg-hero overflow-hidden ">
 
         <div class="absolute inset-0 min-h-full grid grid-cols-6 backdrop-blur-lg bg-indigo-950/40">
             <!-- ? Here the NavBar componnent starts -->
@@ -47,7 +49,7 @@
 
                 <div class="flex justify-between items-center backdrop-blur-sm bg-[#111827]/80  rounded-full shadow-md mb-3   ">
                     <img class=" h-full  rounded-full  size-12 border border-indigo-900 shadow-lg"
-                        src="./../assets/image1.png" />
+                        th:src="@{images/image1.png}" />
                     <a href="#"
                         class="h-full  hover:text-indigo-500 py-2 px-4 rounded-full flex items-center justify-start w-">@Oaalche4763</a>
                 </div>
@@ -59,12 +61,7 @@
                  <div class=" fixed   -top-20 left-30 w-96 h-72 bg-indigo-500/50 rounded-full filter blur-3xl"></div>
                  <div class=" fixed   -top-20 right-0 w-96 h-72 bg-indigo-500/50 rounded-full filter blur-3xl"></div>
                  <div class=" fixed bottom-0 -right-2  w-72 h-72 bg-indigo-600/50 rounded-full filter blur-3xl"></div>
-                <!-- ! for blogs and other section -->
-                <div class=" w-full   py-5 space-y-3">
-                    <h2 class="text-2xl font-medium">Blogs</h2>
-                    <p class="leading-5 ">@oaalache<span class="font-mono font-bold text-indigo-500"> > </span>Blogs</p>
-                </div>
-                <!-- ! =================== -->
+                
 
                 <!-- ?Search Bar -->
                 <div class="w-full  p-7 flex items-center justify-center">
@@ -84,7 +81,7 @@
                 <div  class="grid grid-cols-4 grid-flow-row gap-5  w-full  my-4 rounded-3xl">
 
                     <div th:each="post : ${posts}" class="h-[250px] w-[250px] bg-indigo-900 rounded-lg relative hover:scale-105 transition-all border-2  border-indigo-900">
-                        <img th:src="@{/images/image3.jpeg}" class="w-full h-full rounded-lg" alt="">
+                        <img th:src="@{images/image3.jpeg}" class="w-full h-full rounded-lg" alt="">
                         <div class="opacity-0 hover:opacity-100 hover:bg-indigo-700/30 hover:backdrop-blur-sm absolute inset-0 rounded-lg transition-all ease-in ">
                             <div class="p-3 flex items-center justify-between">
                                 <h3 class=" text-sm text-indigo-300">Description</h3>

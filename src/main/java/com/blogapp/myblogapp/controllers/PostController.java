@@ -6,13 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.blogapp.myblogapp.dto.BlogerDto;
 import com.blogapp.myblogapp.dto.PostDto;
-import com.blogapp.myblogapp.entities.Bloger;
-import com.blogapp.myblogapp.entities.Categorie;
-import com.blogapp.myblogapp.entities.Post;
-import com.blogapp.myblogapp.entities.Visibility;
 import com.blogapp.myblogapp.services.IBlogerService;
 import com.blogapp.myblogapp.services.IpostService;
 
@@ -61,64 +57,4 @@ public class PostController {
 
         return "blogs";
     }
-
-    @GetMapping("/home")
-    public String home() {
-        return "home";
-    }
-    
-      // Endpoint to like a post
-    @PostMapping("/{postId}/like")
-    public ResponseEntity<Boolean> likePost(@PathVariable Long postId) {
-        Boolean result = postService.likePost(postId);
-        if (result) {
-            return ResponseEntity.ok(true);
-        } else {
-            return ResponseEntity.badRequest().body(false);
-        }
-    }
-
-    // Endpoint to create a new post
-    @PostMapping
-    public ResponseEntity<PostDto> createPost(@Valid @RequestBody Post post, BindingResult result) {
-        if (result.hasErrors()) {
-            return ResponseEntity.badRequest().body(null);
-        }
-        PostDto postDto = postService.createPost(post);
-        return ResponseEntity.ok(postDto);
-    }
-
-    // Endpoint to save a post
-    @PutMapping
-    public ResponseEntity<PostDto> savePost(@Valid @RequestBody Post post, BindingResult result) {
-        if (result.hasErrors()) {
-            return ResponseEntity.badRequest().body(null);
-        }
-        PostDto postDto = postService.savePost(post);
-        return ResponseEntity.ok(postDto);
-    }
-
-    // Endpoint to update a post
-    @PutMapping("/{postId}")
-    public ResponseEntity<Boolean> updatePost(@PathVariable Long postId, @Valid @RequestBody Post post, BindingResult result) {
-        if (result.hasErrors()) {
-            return ResponseEntity.badRequest().body(false);
-        }
-        post.setId(postId); // Ensure the ID is set for updating
-        Boolean updated = postService.updatePost(post);
-        return ResponseEntity.ok(updated);
-    }
-
-    // Endpoint to delete a post
-    @DeleteMapping("/{postId}")
-    public ResponseEntity<Boolean> deletePost(@PathVariable Long postId) {
-        Boolean deleted = postService.deletePost(postId);
-        if (deleted) {
-            return ResponseEntity.ok(true);
-        } else {
-            return ResponseEntity.badRequest().body(false);
-        }
-    }
-}
-
 }

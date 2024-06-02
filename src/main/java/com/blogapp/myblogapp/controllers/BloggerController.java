@@ -10,12 +10,20 @@ import com.blogapp.myblogapp.entities.Bloger;
 import com.blogapp.myblogapp.services.IBlogerService;
 
 import javax.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class BloggerController {
 
     @Autowired
     private IBlogerService blogerService;
+
+    @GetMapping("/register")
+    public String getMethodName(Model model) {
+        Bloger user = new Bloger();
+        model.addAttribute("user", user);
+        return "signUp";
+    }
 
     @PostMapping("/register")
     public String createBlogger(@Valid Bloger bloger, BindingResult result, Model model) {
