@@ -11,6 +11,7 @@ import com.blogapp.myblogapp.services.IBlogerService;
 
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class BloggerController {
@@ -20,17 +21,22 @@ public class BloggerController {
 
     @GetMapping("/register")
     public String getMethodName(Model model) {
-        Bloger user = new Bloger();
-        model.addAttribute("user", user);
+        Bloger newUser = new Bloger();
+        model.addAttribute("newUser", newUser);
         return "signUp";
     }
 
     @PostMapping("/register")
-    public String createBlogger(@Valid Bloger bloger, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "bloggerForm"; // return the form view with errors
+    public String createBlogger(@Valid @ModelAttribute("newUser") Bloger newUser) {
+
+        Boolean isUnique = blogerService.saveBloger(newUser);
+        if (isUnique) {
+            System.out.println("********** " + "User added successfuly :)" + "*********");
+            return "redirect:/posts";
+        } else {
+            String erroMessage = "Username or Email already exist !!!";
+            System.out.println("********** " + erroMessage + "*********");
+            return "signUp";
         }
-        blogerService.saveBloger(bloger);
-        return "redirect:/bloggers";
     }
 }

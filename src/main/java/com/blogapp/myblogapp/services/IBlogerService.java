@@ -16,11 +16,14 @@ public interface IBlogerService {
 
     BlogerDto findByEmail(String email);
 
+    // ? Auth
+    User authenticate(String username, String password) throws Exception;
+
     // ? Crud operations
 
     void friendRequest(Long userId);
 
-    BlogerDto saveBloger(User user);
+    Boolean saveBloger(User user);
 
     Boolean updateBloger(User user);
 

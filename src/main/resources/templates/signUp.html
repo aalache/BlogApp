@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="./../output.css">
-    <link rel="stylesheet" href="./../style.css">
+    <link th:href="@{/css/output.css} "rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body  class="h-full">
     
@@ -20,26 +20,30 @@
           
           <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <!-- ? Registration Form Start-->
-            <form class="space-y-5" action="#" method="POST">
+            <form class="space-y-5" role="form" method="post" th:action="@{/register}" th:object="${newUser}">
 
                 <div >
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-200">Username</label>
+                    <label for="username" class="block text-sm font-medium leading-6 text-gray-200">Username</label>
                     <div class="mt-2">
-                        <input id="username" name="username" type="text" autocomplete="username" required class="block w-full rounded-md border-0  text-gray-200 shadow-sm  placeholder:text-gray-200 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  px-3 py-2.5 focus-visible:outline-dashed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400 backdrop-blur-sm bg-gray-300/20">
+                        <input id="username" name="username" type="text" autocomplete="username" required th:field="*{userName}" 
+                        class="block w-full rounded-md border-0  text-gray-200 shadow-sm  placeholder:text-gray-200 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  px-3 py-2.5 focus-visible:outline-dashed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400 backdrop-blur-sm bg-gray-300/20 ">
                     </div>
                 </div>
                 
                 <div>
                   <label for="email" class="block text-sm font-medium leading-6 text-gray-200">Email address</label>
                   <div class="mt-2">
-                    <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0  text-gray-200 shadow-sm  placeholder:text-gray-200 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  px-3 py-2.5 focus-visible:outline-dashed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400 backdrop-blur-sm bg-gray-300/20">
+                    <input id="email" name="email" type="email" autocomplete="email" 
+                    required th:field="*{email}"
+                    class="block w-full rounded-md border-0  text-gray-200 shadow-sm  placeholder:text-gray-200 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  px-3 py-2.5 focus-visible:outline-dashed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400 backdrop-blur-sm bg-gray-300/20">
                   </div>
                 </div>
         
                 <div>
                     <label for="password" class="block text-sm font-medium leading-6 text-gray-200">Password</label>
                   <div class="mt-2">
-                    <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0  text-gray-200 shadow-sm  placeholder:text-gray-200 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-[#1D2432] px-3 py-2.5 focus-visible:outline-dashed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400 backdrop-blur-sm bg-gray-300/20">
+                    <input id="password" name="password" type="password" autocomplete="current-password" required th:field="*{password}"
+                    class="block w-full rounded-md border-0  text-gray-200 shadow-sm  placeholder:text-gray-200 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-[#1D2432] px-3 py-2.5 focus-visible:outline-dashed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400 backdrop-blur-sm bg-gray-300/20">
                   </div>
                 </div>
         

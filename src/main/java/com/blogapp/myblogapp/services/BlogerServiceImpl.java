@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.blogapp.myblogapp.dto.BlogerDto;
 import com.blogapp.myblogapp.dto.DtoMapping;
 import com.blogapp.myblogapp.entities.Bloger;
+import com.blogapp.myblogapp.entities.Role;
 import com.blogapp.myblogapp.entities.User;
 import com.blogapp.myblogapp.repository.UserRepository;
 
@@ -28,16 +29,45 @@ public class BlogerServiceImpl implements IBlogerService {
         throw new UnsupportedOperationException("Unimplemented method 'friendRequest'");
     }
 
+    // ? User Authentification
+    @Override
+    public User authenticate(String username, String password) throws Exception {
+        User user = userRepository.findByUserName(username).orElse(null);
+
+        if (user == null) {
+            throw new Exception("Invalid Username");
+        }
+        if (!user.getPassword().equals(password)) {
+            throw new Exception("Invalid Password");
+        }
+        return user;
+    }
+
     // ? User Crud operations
 
-    @Override
-    public BlogerDto saveBloger(User user) {
+    public boolean isUsernameUnique(String username) {
+        User user = userRepository.findByUserName(username).orElse(null);
+        if (user == null)
+            return true;
+        else
+            return false;
+    }
 
-        if (user != null) {
-            Bloger newUser = (Bloger) userRepository.save(user);
-            return dtoMapping.mapToBlogerDto(newUser);
+    public boolean isEmailUnique(String email) {
+        User user = userRepository.findByEmail(email).orElse(null);
+        if (user == null)
+            return true;
+        else
+            return false;
+    }
+
+    @Override
+    public Boolean saveBloger(User user) {
+        if (user != null && isUsernameUnique(user.getUserName()) && isEmailUnique(user.getEmail())) {
+            userRepository.save(user);
+            return true;
         } else {
-            return null;
+            return false;
         }
     }
 
@@ -82,19 +112,28 @@ public class BlogerServiceImpl implements IBlogerService {
     @Override
     public BlogerDto findById(Long id) {
         Bloger res = (Bloger) userRepository.findById(id).orElse(null);
-        return dtoMapping.mapToBlogerDto(res);
+        if (res != null)
+            return dtoMapping.mapToBlogerDto(res);
+        else
+            return null;
     }
 
     @Override
     public BlogerDto findByUserName(String userName) {
         Bloger res = (Bloger) userRepository.findByUserName(userName).orElse(null);
-        return dtoMapping.mapToBlogerDto(res);
+        if (res != null)
+            return dtoMapping.mapToBlogerDto(res);
+        else
+            return null;
     }
 
     @Override
     public BlogerDto findByEmail(String email) {
         Bloger res = (Bloger) userRepository.findByEmail(email).orElse(null);
-        return dtoMapping.mapToBlogerDto(res);
+        if (res != null)
+            return dtoMapping.mapToBlogerDto(res);
+        else
+            return null;
     }
 
 }
