@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full bg-[#111827]">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="./../output.css">
-    <link rel="stylesheet" href="./../style.css">
+    <meta name="viewport" xmlns:th="http://www.thymeleaf.org"  content="width=device-width, initial-scale=1.0">
+    <title>Post Form</title>
+    <link th:href="@{/css/output.css} "rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
+
 <body class="h-full">
     
     <div class=" flex min-h-full h-full  justify-center items-center    bg-hero  " >
         <div class="flex justify-center items-center h-full overflow-scroll w-full  rounded-none border-none  backdrop-blur-lg bg-[#111827]/70 ">
 
-            <div class=" border w-full h-auto bg-red-600  ">
+            <div class=" border w-full h-auto   ">
 
               <div class="sm:mx-auto sm:w-full sm:max-w-sm ">
                 <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">

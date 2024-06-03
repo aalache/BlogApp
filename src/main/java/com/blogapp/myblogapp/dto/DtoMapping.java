@@ -90,7 +90,7 @@ public class DtoMapping {
 
         BlogerDto blogerDto = BlogerDto.builder()
                 .id(user.getId())
-                .userName(user.getUserName())
+                .username(user.getUsername())
                 .email(user.getEmail())
                 .role(user.getRole())
                 .Posts(user.getPosts())
@@ -120,7 +120,7 @@ public class DtoMapping {
                 .build();
 
         blogerRes.setId(user.getId());
-        blogerRes.setUserName(user.getUserName());
+        blogerRes.setUsername(user.getUsername());
         blogerRes.setEmail(user.getEmail());
         blogerRes.setRole(user.getRole());
 

@@ -29,13 +29,13 @@ public abstract class User {
 
     public User(String username, String password, String email) {
         this.setId(id);
-        this.setUserName(username);
+        this.setUsername(username);
         this.setPassword(password);
         this.setEmail(email);
     }
 
     public User(String username, String password) {
-        this.setUserName(username);
+        this.setUsername(username);
         this.setPassword(password);
     }
 
@@ -47,7 +47,7 @@ public abstract class User {
     @NotBlank
     @Size(max = 50)
     @Column(unique = true)
-    private String userName;
+    private String username;
 
     @NotBlank
     @Size(max = 100)

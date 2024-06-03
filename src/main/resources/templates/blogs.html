@@ -47,11 +47,17 @@
                     </ul>
                 </div>
 
-                <div class="flex justify-between items-center backdrop-blur-sm bg-[#111827]/80  rounded-full shadow-md mb-3   ">
-                    <img class=" h-full  rounded-full  size-12 border border-indigo-900 shadow-lg"
-                        th:src="@{images/image1.png}" />
-                    <a href="#"
-                        class="h-full  hover:text-indigo-500 py-2 px-4 rounded-full flex items-center justify-start w-">@Oaalche4763</a>
+                <div class="space-y-4 mb-4">
+                    <div class=" px-4 py-3 rounded-md hover:shadow-md hover:bg-indigo-900 transition-all ease-in hover:scale-105 cursor-pointer hover:tracking-wide">
+                        <a th:href="@{/app/logout}" class="space-x-3"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></a>
+                    </div >
+
+                    <div class="flex justify-between items-center backdrop-blur-sm bg-[#111827]/80  rounded-full shadow-md    ">
+                        <img class=" h-full  rounded-full  size-12 border border-indigo-900 shadow-lg"
+                            th:src="@{/images/image1.png}" />
+                        <a href="#"
+                            class="h-full  hover:text-indigo-500 py-2 px-4 rounded-full flex items-center justify-start w-"  > @ <span th:text=" ${sessionUsername}"></span></a>
+                    </div>
                 </div>
             </nav>
             <!-- ? NavBar End -->

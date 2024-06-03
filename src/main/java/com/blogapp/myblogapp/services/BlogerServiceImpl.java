@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.blogapp.myblogapp.dto.BlogerDto;
 import com.blogapp.myblogapp.dto.DtoMapping;
 import com.blogapp.myblogapp.entities.Bloger;
-import com.blogapp.myblogapp.entities.Role;
 import com.blogapp.myblogapp.entities.User;
 import com.blogapp.myblogapp.repository.UserRepository;
 
@@ -31,8 +30,8 @@ public class BlogerServiceImpl implements IBlogerService {
 
     // ? User Authentification
     @Override
-    public User authenticate(String username, String password) throws Exception {
-        User user = userRepository.findByUserName(username).orElse(null);
+    public BlogerDto authenticate(String username, String password) throws Exception {
+        User user = userRepository.findByUsername(username).orElse(null);
 
         if (user == null) {
             throw new Exception("Invalid Username");
@@ -40,13 +39,13 @@ public class BlogerServiceImpl implements IBlogerService {
         if (!user.getPassword().equals(password)) {
             throw new Exception("Invalid Password");
         }
-        return user;
+        return dtoMapping.mapToBlogerDto((Bloger) user);
     }
 
     // ? User Crud operations
 
     public boolean isUsernameUnique(String username) {
-        User user = userRepository.findByUserName(username).orElse(null);
+        User user = userRepository.findByUsername(username).orElse(null);
         if (user == null)
             return true;
         else
@@ -63,7 +62,7 @@ public class BlogerServiceImpl implements IBlogerService {
 
     @Override
     public Boolean saveBloger(User user) {
-        if (user != null && isUsernameUnique(user.getUserName()) && isEmailUnique(user.getEmail())) {
+        if (user != null && isUsernameUnique(user.getUsername()) && isEmailUnique(user.getEmail())) {
             userRepository.save(user);
             return true;
         } else {
@@ -120,7 +119,7 @@ public class BlogerServiceImpl implements IBlogerService {
 
     @Override
     public BlogerDto findByUserName(String userName) {
-        Bloger res = (Bloger) userRepository.findByUserName(userName).orElse(null);
+        Bloger res = (Bloger) userRepository.findByUsername(userName).orElse(null);
         if (res != null)
             return dtoMapping.mapToBlogerDto(res);
         else

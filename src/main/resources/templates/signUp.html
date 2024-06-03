@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-[#111827]">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  class="h-full bg-[#111827]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,12 +20,12 @@
           
           <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <!-- ? Registration Form Start-->
-            <form class="space-y-5" role="form" method="post" th:action="@{/register}" th:object="${newUser}">
+            <form class="space-y-5" role="form" method="post" th:action="@{/app/register}" th:object="${newUser}">
 
                 <div >
                     <label for="username" class="block text-sm font-medium leading-6 text-gray-200">Username</label>
                     <div class="mt-2">
-                        <input id="username" name="username" type="text" autocomplete="username" required th:field="*{userName}" 
+                        <input id="username" name="username" type="text" autocomplete="username" required th:field="*{username}" 
                         class="block w-full rounded-md border-0  text-gray-200 shadow-sm  placeholder:text-gray-200 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6  px-3 py-2.5 focus-visible:outline-dashed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400 backdrop-blur-sm bg-gray-300/20 ">
                     </div>
                 </div>

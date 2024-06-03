@@ -13,7 +13,7 @@ import lombok.Data;
 public class BlogerDto {
 
     private long id;
-    private String userName;
+    private String username;
     // ?
     // private String password;
     // ?

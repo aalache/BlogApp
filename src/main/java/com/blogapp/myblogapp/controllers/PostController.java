@@ -9,10 +9,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.blogapp.myblogapp.dto.PostDto;
+import com.blogapp.myblogapp.entities.Post;
 import com.blogapp.myblogapp.services.IBlogerService;
 import com.blogapp.myblogapp.services.IpostService;
 
+import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 @Controller
+@RequestMapping("app/")
+
 public class PostController {
     @Autowired
     private IpostService postService;
@@ -21,7 +28,7 @@ public class PostController {
     private IBlogerService blogerService;
 
     @GetMapping(value = "/posts")
-    public String index(Model model) {
+    public String Posts(Model model, HttpSession session) {
 
         // Bloger bloger = Bloger.builder().build();
         // bloger.setUserName("@zakariae");
@@ -52,9 +59,21 @@ public class PostController {
 
         // postService.createPost(post1);
 
+        String sessionData = (String) session.getAttribute("sessionUsername");
+        model.addAttribute("sessionUsername", sessionData);
+
         List<PostDto> posts = postService.findAllPosts();
         model.addAttribute("posts", posts);
 
         return "blogs";
+    }
+
+    @GetMapping(value = "/posts/create_post")
+    public String createPost(Model model, HttpSession session) {
+
+        Post newPost = new Post();
+        model.addAttribute("newPost", newPost);
+
+        return "newPost";
     }
 }

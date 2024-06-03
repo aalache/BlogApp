@@ -17,7 +17,7 @@ public interface IBlogerService {
     BlogerDto findByEmail(String email);
 
     // ? Auth
-    User authenticate(String username, String password) throws Exception;
+    BlogerDto authenticate(String username, String password) throws Exception;
 
     // ? Crud operations
 
