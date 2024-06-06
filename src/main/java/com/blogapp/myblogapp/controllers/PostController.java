@@ -5,17 +5,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.blogapp.myblogapp.dto.PostDto;
+import com.blogapp.myblogapp.entities.Categorie;
 import com.blogapp.myblogapp.entities.Post;
-import com.blogapp.myblogapp.services.IBlogerService;
 import com.blogapp.myblogapp.services.IpostService;
+import com.blogapp.myblogapp.entities.Visibility;
 
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.validation.Valid;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("app/")
@@ -24,40 +30,9 @@ public class PostController {
     @Autowired
     private IpostService postService;
 
-    @Autowired
-    private IBlogerService blogerService;
-
+    // ? Render All Posts
     @GetMapping(value = "/posts")
     public String Posts(Model model, HttpSession session) {
-
-        // Bloger bloger = Bloger.builder().build();
-        // bloger.setUserName("@zakariae");
-        // bloger.setEmail("zakariae@gmail.com");
-        // bloger.setPassword("passwd321");
-
-        // blogerService.saveBloger(bloger);
-
-        // Post post1 = Post.builder()
-        // .categorie(Categorie.LIFESTYLE)
-        // .content("this is the my first Post ,it's about Life Style ...")
-        // .likes(255)
-        // .title("How to ?")
-        // .visibility(Visibility.PUBLIC)
-        // .id(1)
-        // .build();
-
-        // Post post1 = Post.builder()
-        // .categorie(Categorie.LIFESTYLE)
-        // .content("this is the forth post for today...")
-        // .likes(255)
-        // .title("Post 4")
-        // .visibility(Visibility.PRIVATE)
-        // .id(1)
-        // .build();
-
-        // post1.setAuthor(bloger);
-
-        // postService.createPost(post1);
 
         String sessionData = (String) session.getAttribute("sessionUsername");
         model.addAttribute("sessionUsername", sessionData);
@@ -68,12 +43,48 @@ public class PostController {
         return "blogs";
     }
 
+    // ? Render Form to Create new Post
     @GetMapping(value = "/posts/create_post")
-    public String createPost(Model model, HttpSession session) {
+    public String createPostForm(Model model) {
 
         Post newPost = new Post();
         model.addAttribute("newPost", newPost);
+        model.addAttribute("visibilityOps", Visibility.values());
+        model.addAttribute("categoryOps", Categorie.values());
 
         return "newPost";
     }
+
+    // ? Handle requests from createPostForm and save the new posts
+    @PostMapping("/posts/create_post")
+    public String createPost(@Valid @ModelAttribute("newPost") Post post, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "redirect:/app/posts/create_post";
+        }
+        postService.createPost(post);
+        return "redirect:/app/posts";
+
+    }
+
+    // ? Render Form to edit post details
+    @GetMapping("/posts/edit_post/{id}")
+    public String editPostForm(@PathVariable("id") Long postId, Model model) {
+
+        PostDto currentPost = postService.findById(postId);
+        model.addAttribute("currentPost", currentPost);
+        model.addAttribute("visibilityOps", Visibility.values());
+        model.addAttribute("categoryOps", Categorie.values());
+        return "editPost";
+    }
+
+    // ? Handle requests from editPostForm and save edited Post
+    @PostMapping("/posts/save")
+    public String postMethodName(@ModelAttribute("currentPost") Post post) {
+
+        postService.savePost(post);
+
+        return "redirect:/app/posts";
+    }
+
 }

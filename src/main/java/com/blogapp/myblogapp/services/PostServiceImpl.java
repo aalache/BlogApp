@@ -105,8 +105,8 @@ public class PostServiceImpl implements IpostService {
 
     @Override
     public PostDto savePost(Post post) {
-
         if (post != null) {
+            System.out.println("*********** id: " + post.getId() + "**************");
             Post savedPost = postRepository.save(post);
             return dtoMapping.mapToPostDto(savedPost);
         } else {
@@ -126,18 +126,18 @@ public class PostServiceImpl implements IpostService {
         return false;
     }
 
-    @Override
-    public Boolean updatePost(Post post) {
+    // @Override
+    // public Boolean updatePost(Post post) {
 
-        Post postToUpdate = postRepository.findById(post.getId()).orElse(null);
+    // Post postToUpdate = postRepository.findById(post.getId()).orElse(null);
 
-        if (postToUpdate != null) {
-            savePost(post);
-            return true;
+    // if (postToUpdate != null) {
+    // savePost(post);
+    // return true;
 
-        } else {
-            return false;
-        }
-    }
+    // } else {
+    // return false;
+    // }
+    // }
 
 }

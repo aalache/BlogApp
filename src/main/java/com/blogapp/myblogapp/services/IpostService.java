@@ -35,7 +35,7 @@ public interface IpostService {
 
     PostDto savePost(Post post);
 
-    Boolean updatePost(Post post);
+    // Boolean updatePost(Post post);
 
     Boolean deletePost(Long postId);
 

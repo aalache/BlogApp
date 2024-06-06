@@ -4,15 +4,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.blogapp.myblogapp.entities.*;
+
 import lombok.*;
 
 @Data
 @Builder
 public class PostDto {
+
     private long id;
     private String title;
     private String description;
     private String content;
+    private String image;
     private int likes;
     private Bloger author;
     private List<Comment> comments;

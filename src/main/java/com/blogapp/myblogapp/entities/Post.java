@@ -1,15 +1,16 @@
 package com.blogapp.myblogapp.entities;
 
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.attoparser.dom.Text;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.nimbusds.jose.shaded.gson.annotations.Since;
+import com.nimbusds.jose.util.Base64;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -23,12 +24,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -46,15 +47,19 @@ public class Post {
     @Column(name = "PostId", nullable = false)
     private long id;
 
+    @NotEmpty(message = "title can't be empty")
     private String title;
 
+    @NotEmpty(message = "description can't be empty")
     @Size(max = 255)
     @Column(length = 255)
     private String description;
 
+    @NotEmpty(message = "image link can't be empty")
     @Column(name = "PostImage")
     private String image;
 
+    @NotEmpty(message = "content can't be empty")
     @Column(columnDefinition = "Text")
     private String content;
 
