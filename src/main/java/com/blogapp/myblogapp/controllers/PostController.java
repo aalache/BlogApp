@@ -21,7 +21,6 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("app/")
@@ -83,8 +82,16 @@ public class PostController {
     public String postMethodName(@ModelAttribute("currentPost") Post post) {
 
         postService.savePost(post);
-
         return "redirect:/app/posts";
+    }
+
+    // ? handle requests from delete form and delete the post selected
+    @GetMapping("/posts/delete/{id}")
+    public String deletePost(@PathVariable() Long postId, Model model) {
+
+        postService.deletePost(postId);
+        return "redirect:/app/posts";
+
     }
 
 }

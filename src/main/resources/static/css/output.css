@@ -586,16 +586,16 @@ video {
   bottom: 0px;
 }
 
+.bottom-2 {
+  bottom: 0.5rem;
+}
+
 .left-20 {
   left: 5rem;
 }
 
 .right-0 {
   right: 0px;
-}
-
-.bottom-2 {
-  bottom: 0.5rem;
 }
 
 .z-0 {
@@ -732,10 +732,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.max-w-96 {
-  max-width: 24rem;
 }
 
 .max-w-\[500px\] {
@@ -995,10 +991,6 @@ video {
 
 .p-7 {
   padding: 1.75rem;
-}
-
-.p-5 {
-  padding: 1.25rem;
 }
 
 .px-10 {
